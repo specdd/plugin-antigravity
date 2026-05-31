@@ -19,7 +19,8 @@ Learn more about SpecDD at https://specdd.ai.
 The plugin helps Antigravity read a target project's active
 `.specdd/bootstrap.md` chain, resolve local spec authority, and work through
 orientation, explanation, planning, implementation, review, testing, tracing,
-documentation, refactoring, debugging, and risk assessment.
+documentation, refactoring, debugging, risk assessment, SpecDD adoption, spec
+authoring, and CLI-assisted SpecDD work.
 
 This repository is generated automatically from the SpecDD agent plugins source
 repository:

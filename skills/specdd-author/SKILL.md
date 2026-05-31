@@ -1,13 +1,14 @@
 ---
-name: specdd-review
-description: Use when Antigravity needs to review changes against active SpecDD specs.
+name: specdd-author
+description: Use when Antigravity needs to author or revise SpecDD `.sdd` specs in an existing SpecDD project.
 license: Apache-2.0
 ---
 
-# SpecDD Review
+# SpecDD Author
 
-Use this skill for code-review style review under SpecDD. Do not edit files
-unless the user explicitly asks for changes.
+Use this skill to create or improve specs in an existing SpecDD project.
+If `.specdd/bootstrap.md` is missing, use `specdd-adopt` first.
+Do not change implementation files unless the user explicitly asks for implementation work too.
 
 ## Skill Scope
 
@@ -45,23 +46,22 @@ Do not reread an entire chain just because a workflow phase changed. Reopen the 
 
 ## Workflow
 
-1. Compare the diff against applicable `Must`, `Must not`, `Forbids`, `Scenario`, `Tasks`, and `Done when` entries.
-2. When useful and available, consider consulting the `specdd-cli` skill for CLI-assisted governing-spec discovery before judging a diff; read or reread the relevant contracts directly when exact text is needed for a finding.
-3. Check whether verification matches the behavioral risk.
-4. Report concrete findings, questions, or residual risk.
+1. Ensure existing ancestor specs for the target area are known before adding new specs; reread the nearest relevant spec when exact wording matters.
+2. Identify the smallest useful spec boundary for the requested authoring work.
+3. When useful and available, consider consulting the `specdd-cli` skill for CLI-assisted spec discovery or linting; read or reread relevant governing specs directly when exact contract text is needed.
+4. Treat the user's explicit request as target scope, then create or edit `.sdd` files only inside authority granted by the active spec chain.
+5. Keep specs short, local, behavioral, and constraint-oriented.
 
-## Review Output
+## Authoring Rules
 
-Lead with findings, ordered by severity. For each finding, include:
+- Prefer a root or nearest-area spec before adding narrow child specs.
+- Use path-based ownership and explicit `References`; do not imply authority from similar names or nearby files.
+- Include only sections that add useful local authority, constraints, behavior, tasks, or context.
+- Use `Can modify` or `Owns` to make write authority discoverable.
+- Do not copy the full SpecDD framework rules into project specs.
+- Do not turn uncertain observations into durable contracts.
+- If write authority, ownership, public behavior, or security scope is unclear, stop and ask.
 
-- File and line when available.
-- The violated or risky SpecDD contract.
-- The concrete behavior or regression risk.
-- The smallest likely fix.
+## Reporting
 
-Then include open questions or assumptions. Keep summaries secondary and brief.
-If there are no findings, say so clearly and mention any residual test or spec
-coverage gap.
-
-Do not invent requirements beyond the active specs. If behavior is underspecified,
-call that out as an uncertainty rather than a violation.
+Report the bootstrap files and specs used, specs created or changed, intended governing scope, and any unresolved authoring decisions.
